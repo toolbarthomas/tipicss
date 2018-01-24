@@ -46,7 +46,10 @@ const REVISION = new Date().getTime();
     // before processing any new streams
     GULP.task('clean', requireGulpTask('clean'));
 
-    // Parses all Totemcss twig documents.
+    // Tasks for compiling Sass stylesheets
+    GULP.task('sass', requireGulpTask('sass'));
+
+    // Parses all twig documents.
     // Stylesheet tasks should run before parsing any twig files
     // so we can import any generated stylesheet file
     GULP.task('twig', requireGulpTask('twig'));
