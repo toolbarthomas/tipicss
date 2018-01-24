@@ -34,6 +34,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         // Iterate trough each source so we can transform all twig sources
         // Return each iterated object into the stream.
         sources.forEach(function (source) {
+
             // Abort if we have no inout within our source
             if (source.input === 0) {
                 return;
@@ -42,24 +43,25 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             var stream = GULP.src(source.input, {
                 nodir: true
             })
-                .pipe(GULP_PLUGINS.plumber())
-                .pipe(GULP_PLUGINS.twig({
-                    base: './',
-                    data: data,
-                    namespaces: {
-                        'tipicss': '../' + (process.cwd()).substring((process.cwd()).lastIndexOf("/") + 1) + '/' + (process.env.TIPICSS_SRC).replace('./', ''),
-                        'tipicss_packages': NODE_MODULES.path.normalize(process.env.TIPICSS_PACKAGES)
-                    },
-                    onError: function (error) {
-                        if (!error) {
-                            return;
-                        }
+            .pipe(GULP_PLUGINS.plumber())
+            .pipe(GULP_PLUGINS.twig({
+                base: './',
+                data: data,
+                namespaces: {
+                    'tipicss': '../' + (process.cwd()).substring((process.cwd()).lastIndexOf("/") + 1) + '/' + (process.env.TIPICSS_SRC).replace('./', ''),
+                    'tipicss_packages': NODE_MODULES.path.normalize(process.env.TIPICSS_PACKAGES)
+                },
+                onError: function (error) {
+                    if (!error) {
+                        return;
                     }
-                }))
-                .pipe(GULP_PLUGINS.faker())
-                .pipe(GULP.dest(source.output));
+                }
+            }))
+            .pipe(GULP_PLUGINS.faker())
+            .pipe(GULP.dest(source.output));
 
             streams.push(stream);
+
         }, this);
 
         return NODE_MODULES.merge(streams);
