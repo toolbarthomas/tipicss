@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <title></title>
+
+        <meta name="description" content="" />
+        <meta name="robots" content="index, follow" />
+
+        <!-- Microsoft Windows Application Settings -->
+        <meta name="application-name" content=""/>
+        <meta name="msapplication-TileColor" content="#000000"/>
+        <meta name="theme-color" content="#000000" />
+
+        <!-- Respsonsive Meta Tags -->
+        <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0" />
+
+        <!-- Web Application Icon -->
+        <link rel="icon" type="image/png" href="/assets/img/layout/appicon.png">
+
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" href="/assets/img/layout/apple-touch-icon.png">
+        <link rel="mask-icon" href="/assets/img/layout/appicon.svg" color="#000000">
+
+        <link rel="stylesheet" href="/main/stylesheets/" type="text/css">
+
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="sticky-end">
+            {% if block('header') is not empty %}
+            <div class="sticky-end-header">
+                {{ block('header') }}
+            </div>
+            {% endif %}
+
+            <div class="sticky-end-body">
+                {{ block('content') }}
+            </div>
+
+            {% if block('footer') is not empty %}
+            <div class="sticky-end-footer">
+                {{ block('footer') }}
+            </div>
+            {% endif %}
+        </div>
+
+        {% block foot %}{% endblock %}
+    </body>
+</html>
