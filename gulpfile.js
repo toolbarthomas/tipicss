@@ -42,6 +42,10 @@ const REVISION = new Date().getTime();
         exit('The src path from our .env file is not defined, please check again.');
     }
 
+    // Gulp task that cleans up the distribution folder
+    // before processing any new streams
+    GULP.task('clean', requireGulpTask('clean'));
+
     // Parses all Totemcss twig documents.
     // Stylesheet tasks should run before parsing any twig files
     // so we can import any generated stylesheet file
@@ -51,6 +55,7 @@ const REVISION = new Date().getTime();
     // the necessary tasks to generate a development ready build
     GULP.task('default', function (callback) {
         NODE_MODULES.runSequence(
+            'clean',
             'twig',
             callback
         );
