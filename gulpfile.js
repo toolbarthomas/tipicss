@@ -61,6 +61,9 @@ const REVISION = new Date().getTime();
         NODE_MODULES.runSequence(
             'clean',
             'twig',
+            [
+                'sass'
+            ],
             callback
         );
     });
