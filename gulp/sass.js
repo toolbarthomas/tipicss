@@ -19,11 +19,12 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             var stream = GULP.src(source.input)
             .pipe(GULP_PLUGINS.cached('sass'))
             .pipe(GULP_PLUGINS.sourcemaps.init())
-            .pipe(GULP_PLUGINS.sassGlob())
             .pipe(GULP_PLUGINS.sass({
                 includePaths: [
-                    process.env.TIPICSS_PACKAGES
-                ]
+                    process.env.TIPICSS_PACKAGES,
+                    process.env.TIPICSS_SRC
+                ],
+                importer: NODE_MODULES.sassGlobImporter(),
             }).on('error', GULP_PLUGINS.sass.logError))
             .pipe(GULP_PLUGINS.autoprefixer())
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))

@@ -21,7 +21,8 @@ const NODE_MODULES = {
     fse: require('fs-extra'),
     merge: require('merge-stream'),
     path: require('path'),
-    runSequence: require('run-sequence').use(GULP)
+    runSequence: require('run-sequence').use(GULP),
+    sassGlobImporter: require('node-sass-glob-importer'),
 };
 
 // Create a revision timesamp of the current date in milliseconds.
