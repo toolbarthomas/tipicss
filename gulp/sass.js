@@ -4,10 +4,16 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         var sources = [
             {
                 input: [
-                    process.env.TIPICSS_SRC + '/main/stylesheets/*.scss'
+                    process.env.TIPICSS_SRC + '/**/stylesheets/*.scss'
                 ],
-                output: process.env.TIPICSS_DIST + '/main/stylesheets'
-            }
+                output: process.env.TIPICSS_DIST
+            },
+            {
+                input: [
+                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/stylesheets/*.scss'
+                ],
+                output: process.env.TIPICSS_DIST + '/modules'
+            },
         ];
 
         var streams = [];
