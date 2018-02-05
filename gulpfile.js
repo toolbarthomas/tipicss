@@ -16,6 +16,9 @@ const GULP_PLUGINS = require('gulp-load-plugins')();
 // Require all modules we use for our
 // gulp tasks located in ./gulp
 const NODE_MODULES = {
+    babelify: require('babelify'),
+    browserify: require('browserify'),
+    camelCase: require('camelcase'),
     chalk: require('chalk'),
     del: require('del'),
     fse: require('fs-extra'),
@@ -47,13 +50,32 @@ const REVISION = new Date().getTime();
     // before processing any new streams
     GULP.task('clean', requireGulpTask('clean'));
 
+    // Parses all twig documents.
+    // Any other asset-related tasks should run before parsing any twig files
+    // so we can import any generated stylesheet file
+    GULP.task('twig', requireGulpTask('twig'));
+
     // Tasks for compiling Sass stylesheets
     GULP.task('sass', requireGulpTask('sass'));
 
-    // Parses all twig documents.
-    // Stylesheet tasks should run before parsing any twig files
-    // so we can import any generated stylesheet file
-    GULP.task('twig', requireGulpTask('twig'));
+    // Alias for running all stylesheet related tasks
+    GULP.task('stylesheets', function() {
+        NODE_MODULES.runSequence(
+            'sass',
+            callback
+        );
+    });
+
+    // Transpile ES2015 (or later) javascript file to ES5 compatible browsers
+    GULP.task('babel', requireGulpTask('babel'));
+
+    // Alias for running all stylesheet related tasks
+    GULP.task('javascripts', function () {
+        NODE_MODULES.runSequence(
+            'babel',
+            callback
+        );
+    });
 
     // Default Gulp task that will run all
     // the necessary tasks to generate a development ready build
@@ -62,7 +84,8 @@ const REVISION = new Date().getTime();
             'clean',
             'twig',
             [
-                'sass'
+                'stylesheets',
+                'javascripts'
             ],
             callback
         );
