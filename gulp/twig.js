@@ -5,7 +5,8 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         var sources = [
             {
                 input: [
-                    process.env.TIPICSS_SRC + '/groups/**/*.twig',
+                    process.env.TIPICSS_SRC + '/groups/pages/**.twig',
+                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/pages/**.twig',
                 ],
                 output: process.env.TIPICSS_DIST + '/groups'
             }
