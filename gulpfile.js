@@ -13,6 +13,7 @@ const GULP = require('gulp');
 // More information: https://www.npmjs.com/package/gulp-load-plugins
 const GULP_PLUGINS = require('gulp-load-plugins')();
 
+
 // Require all modules we use for our
 // gulp tasks located in ./gulp
 const NODE_MODULES = {
@@ -67,6 +68,9 @@ const REVISION = new Date().getTime();
     });
 
     // Transpile ES2015 (or later) javascript file to ES5 compatible browsers with Browserify
+    // Files should be located within the `**/javascripts/` structure in order for Browserify to work with it's default configuration
+    // Any partial files should be structured within a sub directory located in `javascripts`.
+    // Gulp will eventually ignore those partial files since we bunddle them
     GULP.task('browserify', requireGulpTask('browserify'));
 
     // Alias for running all stylesheet related tasks
@@ -77,8 +81,12 @@ const REVISION = new Date().getTime();
         );
     });
 
-    // Default Gulp task that will run all
-    // the necessary tasks to generate a development ready build
+
+    // Setup a webserver, defaults to port 8080
+    GULP.task('server', requireGulpTask('server'));
+
+    // Default Gulp task that will run all the necessary
+    // tasks to generate a development ready build
     GULP.task('default', function (callback) {
         NODE_MODULES.runSequence(
             'clean',
@@ -86,6 +94,19 @@ const REVISION = new Date().getTime();
             [
                 'stylesheets',
                 'javascripts'
+            ],
+            callback
+        );
+    });
+
+
+    // Gulp task that generates a new development-ready build
+    // This will also start an webserver with Livereload support
+    GULP.task('default', function (callback) {
+        NODE_MODULES.runSequence(
+            'default',
+            [
+                'connect'
             ],
             callback
         );
