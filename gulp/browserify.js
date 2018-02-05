@@ -10,7 +10,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             },
             {
                 input: [
-                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/javascripts/*.scss'
+                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/javascripts/*.js'
                 ],
                 output: process.env.TIPICSS_DIST + '/modules'
             },

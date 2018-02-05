@@ -59,20 +59,20 @@ const REVISION = new Date().getTime();
     GULP.task('sass', requireGulpTask('sass'));
 
     // Alias for running all stylesheet related tasks
-    GULP.task('stylesheets', function() {
+    GULP.task('stylesheets', function (callback) {
         NODE_MODULES.runSequence(
             'sass',
             callback
         );
     });
 
-    // Transpile ES2015 (or later) javascript file to ES5 compatible browsers
-    GULP.task('babel', requireGulpTask('babel'));
+    // Transpile ES2015 (or later) javascript file to ES5 compatible browsers with Browserify
+    GULP.task('browserify', requireGulpTask('browserify'));
 
     // Alias for running all stylesheet related tasks
-    GULP.task('javascripts', function () {
+    GULP.task('javascripts', function (callback) {
         NODE_MODULES.runSequence(
-            'babel',
+            'browserify',
             callback
         );
     });
