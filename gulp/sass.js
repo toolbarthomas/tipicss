@@ -34,6 +34,11 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             }).on('error', GULP_PLUGINS.sass.logError))
             .pipe(GULP_PLUGINS.autoprefixer())
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
+            .pipe(GULP.dest(source.output))
+            .pipe(GULP_PLUGINS.filter('**/*.css'))
+            .pipe(GULP_PLUGINS.cssnano())
+            .pipe(GULP_PLUGINS.rename({ extname: '.min.css' }))
+            .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output));
 
             streams.push(stream);
