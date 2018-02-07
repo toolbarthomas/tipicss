@@ -57,13 +57,21 @@ const REVISION = new Date().getTime();
     // so we can import any generated stylesheet file
     GULP.task('twig', requireGulpTask('twig'));
 
+    // Convert a set of images into a spritesheet and Sass variables
+    // You should run spritesmith before running the Sass tasks since Spritesmith also generates an config file
+    GULP.task('spritesmith', requireGulpTask('spritesmith'));
+
     // Tasks for compiling Sass stylesheets
     GULP.task('sass', requireGulpTask('sass'));
 
     // Alias for running all stylesheet related tasks
     GULP.task('stylesheets', function (callback) {
         NODE_MODULES.runSequence(
-            'sass',
+            'spritesmith',
+            [
+                'sass',
+                'svgstore'
+            ]
             callback
         );
     });
@@ -82,8 +90,8 @@ const REVISION = new Date().getTime();
         );
     });
 
-    // Convert a set of images into a spritesheet and CSS variables
-    GULP.task('spritesmith', requireGulpTask('spritesmith'));
+    // Combine svg files into one with <symbol> elements
+    GULP.task('svgstore', requireGulpTask('svgstore'));
 
     // Watch streams with Gulp-Watch
     GULP.task('watch', requireGulpTask('watch'));
