@@ -1,0 +1,36 @@
+{{#extend "scss"}}
+  {{#content "sprites"}}
+      $spritesmith: (
+        name: '{{spritesheet.escaped_image}}',
+        path: '{{ imageSource }}',
+        width: {{divideRetina spritesheet.width}}px,
+        height: {{divideRetina spritesheet.height}}px,
+        sprites: (
+          {{#each sprites}}
+            (
+              name: '{{strings.name}}',
+              class: '.{{strings.name}}',
+              x: {{divideRetina x}}px,
+              y: {{divideRetina y}}px,
+              offset_x: {{divideRetina offset_x}}px,
+              offset_y: {{divideRetina offset_y}}px,
+              width: {{divideRetina width}}px,
+              height: {{divideRetina height}}px
+            ),
+          {{/each}}
+        )
+      );
+  {{/content}}
+
+  {{#content "spritesheet"}}
+  {{/content}}
+{{/extend}}
+
+{{#sprites}}
+{{!-- .sprite--{{name}} {
+  background-position: {{ divideRetina offset_x }}px {{ divideRetina offset_y }}px;
+  background-size: {{ divideRetina total_width }}px {{ divideRetina total_height }}px;
+  width: {{ divideRetina width }}px;
+  height: {{ divideRetina height }}px;
+} --}}
+{{/sprites}}
