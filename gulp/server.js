@@ -8,7 +8,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         var server = GULP_PLUGINS.connect.server({
             root: (process.env.TIPICSS_DIST || './dist'),
-            livereload: true,
+            livereload: false,
             port: port
         });
 

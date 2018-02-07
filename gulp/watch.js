@@ -1,9 +1,11 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     const options = {
-        read: false,
+        // read: false,
         readDelay: 250
     };
+
+    GULP_PLUGINS.livereload.listen();
 
     return function (callback) {
         var stylesheets = GULP_PLUGINS.watch([
@@ -40,7 +42,32 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         });
 
-        return NODE_MODULES.merge(stylesheets, javascripts, spritesmith, svgstore);
+        var twig = GULP_PLUGINS.watch([
+            process.env.TIPICSS_SRC + '/**/*twig',
+            process.env.TIPICSS_PACKAGES + '/**/*.twig',
+        ], options, function (events, done) {
+
+            return GULP.start('twig');
+
+        });
+
+        var reload = GULP_PLUGINS.watch([
+            process.env.TIPICSS_DIST + '/main/stylesheets/index.css'
+        ], options, function (events, done) {
+
+            NODE_MODULES.chalk.yellow('Livereload!');
+
+            GULP_PLUGINS.livereload.reload();
+        });
+
+        return NODE_MODULES.merge(
+            stylesheets,
+            javascripts,
+            twig,
+            spritesmith,
+            svgstore,
+            reload
+        );
     };
 
 };

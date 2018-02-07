@@ -21,10 +21,9 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         // Iterate trough each source we have defined within sources
         // Only compile modified Sass files
-        sources.forEach(function (source) {
+        sources.forEach(function (source, index) {
 
             var stream = GULP.src(source.input)
-            .pipe(GULP_PLUGINS.cached('sass'))
             .pipe(GULP_PLUGINS.sourcemaps.init())
             .pipe(GULP_PLUGINS.sass({
                 includePaths: [

@@ -71,7 +71,7 @@ const REVISION = new Date().getTime();
             [
                 'sass',
                 'svgstore'
-            ]
+            ],
             callback
         );
     });

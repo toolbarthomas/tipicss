@@ -5,6 +5,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         NODE_MODULES.del(process.env.TIPICSS_DIST + '/main/images/layout/sprite.*.png');
 
         var spritesmith = GULP.src(process.env.TIPICSS_SRC + '/main/images/layout/sprite/**/*.png')
+        .pipe(GULP_PLUGINS.cached('spritesmith'))
         .pipe(GULP_PLUGINS.plumber())
         .pipe(GULP_PLUGINS.spritesmith({
             padding: 4,
