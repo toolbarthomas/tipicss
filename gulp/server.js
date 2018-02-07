@@ -1,4 +1,5 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
+
     return function (callback) {
 
         // Setup the default server port for our webserver
@@ -13,5 +14,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         return server;
 
-    }
-}
+    };
+
+};

@@ -1,11 +1,12 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
+
     return function (callback) {
 
         // Iterate between each type of component withing the project.
         var sources = [
             {
                 input: [
-                    process.env.TIPICSS_SRC + '/groups/pages/**.twig',
+                    process.env.TIPICSS_SRC + '/groups/*/pages/**.twig',
                     process.env.TIPICSS_PACKAGES + '/tipicss-module*/pages/**.twig',
                 ],
                 output: process.env.TIPICSS_DIST + '/groups'
@@ -66,5 +67,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         }, this);
 
         return NODE_MODULES.merge(streams);
+
     };
+
 };

@@ -48,7 +48,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
 
                 }))
-                .pipe(GULP_PLUGINS.buffer()) // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
+                .pipe(NODE_MODULES.buffer()) // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
                 .pipe(GULP_PLUGINS.cached('browserify'))
                 .pipe(GULP_PLUGINS.sourcemaps.write('./'))
                 .pipe(GULP.dest(source.output))

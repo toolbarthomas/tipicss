@@ -19,6 +19,7 @@ const GULP_PLUGINS = require('gulp-load-plugins')();
 const NODE_MODULES = {
     babelify: require('babelify'),
     browserify: require('browserify'),
+    buffer: require('vinyl-buffer'),
     camelCase: require('camelcase'),
     chalk: require('chalk'),
     del: require('del'),
@@ -81,6 +82,11 @@ const REVISION = new Date().getTime();
         );
     });
 
+    // Convert a set of images into a spritesheet and CSS variables
+    GULP.task('spritesmith', requireGulpTask('spritesmith'));
+
+    // Watch streams with Gulp-Watch
+    GULP.task('watch', requireGulpTask('watch'));
 
     // Setup a webserver, defaults to port 8080
     GULP.task('server', requireGulpTask('server'));
@@ -99,14 +105,14 @@ const REVISION = new Date().getTime();
         );
     });
 
-
     // Gulp task that generates a new development-ready build
     // This will also start an webserver with Livereload support
-    GULP.task('default', function (callback) {
+    GULP.task('serve', function (callback) {
         NODE_MODULES.runSequence(
             'default',
             [
-                'connect'
+                'watch',
+                'server'
             ],
             callback
         );
