@@ -31,17 +31,17 @@
     <body>
         <div class="sticky-end">
             {% if block('header') is not empty %}
-            <div class="sticky-end-header">
+            <div class="sticky-end__header">
                 {{ block('header') }}
             </div>
             {% endif %}
 
-            <div class="sticky-end-body">
+            <div class="sticky-end__body">
                 {{ block('content') }}
             </div>
 
             {% if block('footer') is not empty %}
-            <div class="sticky-end-footer">
+            <div class="sticky-end__footer">
                 {{ block('footer') }}
             </div>
             {% endif %}
