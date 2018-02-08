@@ -1,13 +1,14 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
-    const options = {
-        // read: false,
-        readDelay: 250
-    };
-
-    GULP_PLUGINS.livereload.listen();
-
     return function (callback) {
+
+        const options = {
+            read: false,
+            readDelay: 250
+        };
+
+        GULP_PLUGINS.livereload.listen();
+
         var stylesheets = GULP_PLUGINS.watch([
             process.env.TIPICSS_SRC + '/**/stylesheets/**/*.scss',
             process.env.TIPICSS_PACKAGES + '/**/stylesheets/**/*.scss',

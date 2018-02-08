@@ -44,8 +44,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                     console.error(err);
 
                     this.emit('end');
-                })
-
+                });
 
             }))
             .pipe(NODE_MODULES.buffer()) // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
