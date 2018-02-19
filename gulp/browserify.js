@@ -38,6 +38,8 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                     debug: true,
                     standalone: NODE_MODULES.camelCase(name)
                 })
+
+                .transform(NODE_MODULES.vueify)
                 .transform(NODE_MODULES.babelify)
                 .bundle()
                 .on('error', function (err) {

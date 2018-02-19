@@ -29,6 +29,7 @@ const NODE_MODULES = {
     path: require('path'),
     runSequence: require('run-sequence').use(GULP),
     sassGlobImporter: require('node-sass-glob-importer'),
+    vueify: require('vueify'),
 };
 
 // Create a revision timesamp of the current date in milliseconds.

@@ -58,10 +58,11 @@
     "run-sequence": "^2.2.1",
     "sass-glob-importer": "^1.0.1",
     "sass-module-importer": "^1.4.0",
-    "vinyl-buffer": "^1.0.1"
+    "vinyl-buffer": "^1.0.1",
+    "vue": "^2.5.13",
+    "vueify": "^9.4.1"
   },
   "dependencies": {
-    "fg-loadcss": "^2.0.1",
     "tipicss-core": "^0.1.0"
   },
   "shared_directories": [
