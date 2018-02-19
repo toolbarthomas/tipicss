@@ -2,8 +2,8 @@
 
 {% block head %}
 
-    {% include "tipicss_packages/tipicss-core/partials/fg-loadcss.twig" with {
-        stylesheets = [
+    {% include "tipicss_packages::/tipicss-core/partials/fg-loadcss.twig" with {
+        stylesheets: [
             '/templates/default/stylesheets/index.css',
             '/groups/frontpage/stylesheets/index.css',
         ],
@@ -30,6 +30,8 @@
 {% block footer %}{% endblock %}
 
 {% block foot %}
+    {% include "tipicss_packages::/tipicss-core/partials/svg-sprite-injector.twig" %}
+
     <script src="/main/javascripts/index.js"></script>
     <script src="/templates/default/javascripts/index.js"></script>
 {% endblock %}
