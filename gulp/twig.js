@@ -51,7 +51,8 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                 data: data,
                 namespaces: {
                     'tipicss': '../' + (process.cwd()).substring((process.cwd()).lastIndexOf("/") + 1) + '/' + (process.env.TIPICSS_SRC).replace('./', ''),
-                    'tipicss_packages': NODE_MODULES.path.normalize(process.env.TIPICSS_PACKAGES)
+                    'tipicss_packages': NODE_MODULES.path.normalize(process.env.TIPICSS_PACKAGES),
+                    'tipicss_shared_directories': process.env.TIPICSS_SHARED_DIRECTORIES
                 },
                 onError: function (error) {
                     if (!error) {

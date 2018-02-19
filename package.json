@@ -61,6 +61,10 @@
     "vinyl-buffer": "^1.0.1"
   },
   "dependencies": {
+    "fg-loadcss": "^2.0.1",
     "tipicss-core": "^0.1.0"
-  }
+  },
+  "shared_directories": [
+    "./node_modules/fg-loadcss/**"
+  ]
 }

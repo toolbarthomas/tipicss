@@ -50,6 +50,10 @@ if (!process.env.TIPICSS_SRC || !process.env.TIPICSS_DIST || !process.env.TIPICS
 // before processing any new streams
 GULP.task('clean', requireGulpTask('clean'));
 
+// Gulp task that will load default directories defined within the project package.json
+// Defined directories will be synced at the location defined within the .env file
+GULP.task('resolve', requireGulpTask('resolve'));
+
 // Parses all twig documents.
 // Any other asset-related tasks should run before parsing any twig files
 // so we can import any generated stylesheet file
@@ -99,6 +103,7 @@ GULP.task('server', requireGulpTask('server'));
 GULP.task('default', function (callback) {
     NODE_MODULES.runSequence(
         'clean',
+        'resolve',
         'twig',
         [
             'stylesheets',
