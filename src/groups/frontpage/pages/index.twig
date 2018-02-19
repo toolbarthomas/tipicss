@@ -2,17 +2,13 @@
 
 {% block head %}
 
-    {% set stylesheets = [
-        '/templates/default/stylesheets/index.css',
-        '/groups/frontpage/stylesheets/index.css',
-    ] %}
-
-    {% for stylesheet in stylesheets %}
-        <link rel="preload" href="{{ stylesheet }}" as="style" onload="null;this.rel='stylesheet'" />
-        <noscript>
-            <link rel="stylesheet" href="{{ stylesheet }}" type="text/css">
-        </noscript>
-    {% endfor %}
+    {% include "tipicss_packages/tipicss-core/partials/fg-loadcss.twig" with {
+        stylesheets = [
+            '/templates/default/stylesheets/index.css',
+            '/groups/frontpage/stylesheets/index.css',
+        ],
+        include_javascript: true
+    } %}
 
 {% endblock %}
 
