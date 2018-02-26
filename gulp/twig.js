@@ -6,8 +6,17 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         var sources = [
             {
                 input: [
+                    process.env.TIPICSS_PACKAGES + '/tipicss-core/pages/**.twig',
+                ],
+                output: process.env.TIPICSS_DIST + '/core',
+                options: {
+                    relative: false
+                }
+            },
+            {
+                input: [
                     process.env.TIPICSS_SRC + '/groups/*/pages/**.twig',
-                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/pages/**.twig',
+                    process.env.TIPICSS_PACKAGES + '/tipicss-module*/pages/**.twig'
                 ],
                 output: process.env.TIPICSS_DIST + '/groups'
             }
@@ -42,9 +51,9 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                 return;
             }
 
-            var stream = GULP.src(source.input, {
+            var stream = GULP.src(source.input, Object.assign((source.options || {} ), {
                 nodir: true
-            })
+            }))
             .pipe(GULP_PLUGINS.plumber())
             .pipe(GULP_PLUGINS.twig({
                 base: './',
