@@ -51,6 +51,9 @@ if (!process.env.TIPICSS_SRC || !process.env.TIPICSS_DIST || !process.env.TIPICS
 // before processing any new streams
 GULP.task('clean', requireGulpTask('clean'));
 
+// Gulp task that will sync every static file in our dist folder
+GULP.task('sync', requireGulpTask('sync'));
+
 // Gulp task that will load default directories defined within the project package.json
 // Defined directories will be synced at the location defined within the .env file
 GULP.task('resolve', requireGulpTask('resolve'));
