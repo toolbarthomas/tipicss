@@ -64,8 +64,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             process.env.TIPICSS_DIST + '/main/stylesheets/index.css'
         ], options, function (events, done) {
 
-            NODE_MODULES.chalk.yellow('Livereload!');
-
             GULP_PLUGINS.livereload.reload();
         });
 
