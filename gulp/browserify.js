@@ -23,6 +23,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         sources.forEach(function (source, index) {
 
             var stream = GULP.src(source.input)
+            .pipe(GULP_PLUGINS.cached('browserify'))
             .pipe(GULP_PLUGINS.plumber())
             .pipe(GULP_PLUGINS.filter(function (file) {
                 return file.stat && file.contents.length;
@@ -36,13 +37,15 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                 // Hook Browserify into our current file/stream
                 file.contents = NODE_MODULES.browserify(file.path, {
                     debug: true,
-                    standalone: NODE_MODULES.camelCase(name)
+                    standalone: NODE_MODULES.camelCase(name),
+                    insertGlobals: false,
                 })
+                .transform(NODE_MODULES.babelify).on('error', function (err) {
+                    console.error(err);
 
-                .transform(NODE_MODULES.vueify)
-                .transform(NODE_MODULES.babelify)
-                .bundle()
-                .on('error', function (err) {
+                    this.emit('end');
+                })
+                .bundle().on('error', function (err) {
                     console.error(err);
 
                     this.emit('end');
