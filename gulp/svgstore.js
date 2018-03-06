@@ -17,7 +17,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             var prefix = NODE_MODULES.path.basename(file.relative, NODE_MODULES.path.extname(file.relative));
 
             return {
-                GULP_PLUGINS: [
+                plugins: [
                     {
                         cleanupIDs: {
                             prefix: prefix + '-',
