@@ -25,10 +25,12 @@ const NODE_MODULES = {
     chalk: require('chalk'),
     del: require('del'),
     fse: require('fs-extra'),
+    glob: require('glob'),
     merge: require('merge-stream'),
     path: require('path'),
     runSequence: require('run-sequence').use(GULP),
     sassGlobImporter: require('node-sass-glob-importer'),
+    source: require('vinyl-source-stream')
 };
 
 // Create a revision timesamp of the current date in milliseconds.
