@@ -13,7 +13,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         globs.forEach(function(files) {
 
             if(files.length === 0) {
-                return NODE_MODULES.eventStream.merge([]);
+                return;
             }
 
             files.forEach(function(file) {
