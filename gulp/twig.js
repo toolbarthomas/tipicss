@@ -54,6 +54,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             var stream = GULP.src(source.input, Object.assign((source.options || {} ), {
                 nodir: true
             }))
+            .pipe(GULP_PLUGINS.newer(source.output))
             .pipe(GULP_PLUGINS.plumber())
             .pipe(GULP_PLUGINS.twig({
                 base: './',

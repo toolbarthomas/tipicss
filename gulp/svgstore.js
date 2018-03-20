@@ -5,7 +5,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         return svgstore = GULP.src([
             process.env.TIPICSS_SRC + '/main/images/layout/svg-sprite/**/*.svg'
         ])
-        .pipe(GULP_PLUGINS.cached('svgstore'))
+        .pipe(GULP_PLUGINS.newer(process.env.TIPICSS_DIST + '/main/images/layout'))
         .pipe(GULP_PLUGINS.plumber())
         .pipe(GULP_PLUGINS.filter(function (file) {
             return file.stat && file.contents.length;

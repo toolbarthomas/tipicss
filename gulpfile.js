@@ -24,6 +24,7 @@ const NODE_MODULES = {
     camelCase: require('camelcase'),
     chalk: require('chalk'),
     del: require('del'),
+    eventStream: require('event-stream'),
     fse: require('fs-extra'),
     glob: require('glob'),
     merge: require('merge-stream'),

@@ -15,7 +15,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         // Abort if no package path has been defined
         if (!NODE_MODULES.fse.existsSync(package.path)) {
-            return;
+            return NODE_MODULES.eventStream.merge([]);
         }
 
         // Parse package.json
@@ -24,8 +24,8 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         );
 
         // Abort if the vendors array is not present within the package_json
-        if(package.data.vendors == null) {
-            return;
+        if (package.data.vendors == null || Object.keys(package.data.vendors).length === 0) {
+            return NODE_MODULES.eventStream.merge([]);
         }
 
         var stream = [];

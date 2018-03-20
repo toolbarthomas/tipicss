@@ -24,6 +24,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         sources.forEach(function (source, index) {
 
             var stream = GULP.src(source.input)
+            .pipe(GULP_PLUGINS.newer(source.output))
             .pipe(GULP_PLUGINS.sourcemaps.init())
             .pipe(GULP_PLUGINS.sass({
                 includePaths: [
@@ -36,7 +37,10 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output))
             .pipe(GULP_PLUGINS.filter('**/*.css'))
-            .pipe(GULP_PLUGINS.cssnano())
+            .pipe(GULP_PLUGINS.if(
+                process.env.TIPICSS_ENV == 'production',
+                GULP_PLUGINS.cssnano()
+            ))
             .pipe(GULP_PLUGINS.rename({ extname: '.min.css' }))
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output));
