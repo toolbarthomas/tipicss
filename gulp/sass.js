@@ -49,7 +49,5 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         }, this);
 
         return NODE_MODULES.merge(streams);
-
     };
-
 };

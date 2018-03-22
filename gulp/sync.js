@@ -20,6 +20,5 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         .pipe(GULP.dest(process.env.TIPICSS_DIST));
 
         return NODE_MODULES.merge(src);
-
     };
 };

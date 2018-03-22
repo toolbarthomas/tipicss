@@ -13,7 +13,5 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         });
 
         return server;
-
     };
-
 };

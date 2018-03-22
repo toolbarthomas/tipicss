@@ -15,7 +15,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function(events, done) {
 
             return GULP.start('stylesheets');
-
         });
 
         var javascripts = GULP_PLUGINS.watch([
@@ -24,7 +23,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function (events, done) {
 
             return GULP.start('javascripts');
-
         });
 
         var spritesmith = GULP_PLUGINS.watch([
@@ -32,7 +30,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function (events, done) {
 
             return GULP.start('spritesmith');
-
         });
 
         var svgstore = GULP_PLUGINS.watch([
@@ -40,7 +37,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function (events, done) {
 
             return GULP.start('svgstore');
-
         });
 
         var twig = GULP_PLUGINS.watch([
@@ -49,7 +45,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function (events, done) {
 
             return GULP.start('twig');
-
         });
 
         var static_files = GULP_PLUGINS.watch([
@@ -57,7 +52,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         ], options, function (events, done) {
 
             return GULP.start('sync');
-
         });
 
         var reload = GULP_PLUGINS.watch([
@@ -77,5 +71,4 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             reload
         );
     };
-
 };

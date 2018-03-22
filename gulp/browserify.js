@@ -24,7 +24,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                     ''
                 );
 
-                var b = NODE_MODULES.browserify({
+                var browserify = NODE_MODULES.browserify({
                    entries: file,
                    debug: false,
                 })
@@ -39,11 +39,10 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                 .pipe(GULP_PLUGINS.sourcemaps.write('./'))
                 .pipe(GULP.dest(process.env.TIPICSS_DIST));
 
-                stream.push(b);
+                stream.push(browserify);
             });
         });
 
         return NODE_MODULES.merge(stream);
-
     };
 };

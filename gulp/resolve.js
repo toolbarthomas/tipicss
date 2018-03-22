@@ -35,7 +35,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
             var vendor = package.data.vendors[key];
 
-            if (typeof vendor != 'string') {
+            if (typeof vendor !== 'string') {
                 return;
             }
 

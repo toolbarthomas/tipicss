@@ -40,13 +40,13 @@ const REVISION = new Date().getTime();
 
 // Exit Gulp if we have no environment file
 if (ENV.error) {
-    exit('An environment(./.env) file is required for this workflow. You can create one by duplicating ./.env.dist example.This file should be located in ' + process.cwd());
+    error('An environment(./.env) file is required for this workflow. You can create one by duplicating ./.env.dist example.This file should be located in ' + process.cwd());
 }
 
 // Throw an error & abort the Gulp process
 // when one or more of the following environment variables are undefined
 if (!process.env.TIPICSS_SRC || !process.env.TIPICSS_DIST || !process.env.TIPICSS_PACKAGES) {
-    exit('The src path from our .env file is not defined, please check again.');
+    error('The src path from our .env file is not defined, please check again.');
 }
 
 // Gulp task that cleans up the distribution folder
@@ -138,7 +138,7 @@ GULP.task('serve', function (callback) {
 
 // Helper function for displaying messages with Node Chalk
 // This function will also exit the current Node process.
-function exit(message) {
+function error(message) {
     console.log(NODE_MODULES.chalk.red('[ ' + NAMESPACE + ' ]' + ' - ' + message));
     process.exit(1);
 }

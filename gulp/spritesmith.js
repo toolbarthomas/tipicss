@@ -33,7 +33,5 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         .pipe(GULP.dest(process.env.TIPICSS_SRC + '/main/stylesheets/settings/'));
 
         return NODE_MODULES.merge(sprite, stylesheet);
-
     };
-
 };

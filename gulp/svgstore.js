@@ -2,7 +2,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
-        return svgstore = GULP.src([
+        var svgstore = GULP.src([
             process.env.TIPICSS_SRC + '/main/images/layout/svg-sprite/**/*.svg'
         ])
         .pipe(GULP_PLUGINS.newer(process.env.TIPICSS_DIST + '/main/images/layout'))
@@ -33,7 +33,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                         }
                     }
                 ]
-            }
+            };
         }))
         .pipe(GULP_PLUGINS.svgstore({
             inlineSvg: true
@@ -41,6 +41,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         .pipe(GULP.dest(process.env.TIPICSS_DIST + '/main/images/layout'))
         .pipe(GULP_PLUGINS.connect.reload());
 
+        return svgstore;
     };
-
 };
