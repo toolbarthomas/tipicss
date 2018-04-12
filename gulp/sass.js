@@ -19,6 +19,17 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         var streams = [];
 
+        var processors = [
+            NODE_MODULES.autoprefixer()
+        ];
+
+        // Append extra processors if we are running with the production flag
+        if (process.env.TIPICSS_ENV == 'production') {
+            processors.push(
+                NODE_MODULES.cssnano()
+            );
+        }
+
         // Iterate trough each source we have defined within sources
         // Only compile modified Sass files
         sources.forEach(function (source, index) {
@@ -31,16 +42,12 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                     process.env.TIPICSS_PACKAGES,
                     process.env.TIPICSS_SRC
                 ],
-                importer: NODE_MODULES.sassGlobImporter(),
+                importer: NODE_MODULES.sassGlobImporter()
             }).on('error', GULP_PLUGINS.sass.logError))
-            .pipe(GULP_PLUGINS.autoprefixer())
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output))
             .pipe(GULP_PLUGINS.filter('**/*.css'))
-            .pipe(GULP_PLUGINS.if(
-                process.env.TIPICSS_ENV == 'production',
-                GULP_PLUGINS.cssnano()
-            ))
+            .pipe(GULP_PLUGINS.postcss(processors))
             .pipe(GULP_PLUGINS.rename({ extname: '.min.css' }))
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output));
