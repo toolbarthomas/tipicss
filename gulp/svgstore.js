@@ -39,7 +39,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             inlineSvg: true
         }))
         .pipe(GULP.dest(process.env.TIPICSS_DIST + '/main/images/layout'))
-        .pipe(GULP_PLUGINS.connect.reload());
 
         return svgstore;
     };

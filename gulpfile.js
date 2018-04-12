@@ -18,11 +18,14 @@ const GULP_PLUGINS = require('gulp-load-plugins')();
 // Require all modules we use for our
 // gulp tasks located in ./gulp
 const NODE_MODULES = {
+    autoprefixer: require('autoprefixer'),
     babelify: require('babelify'),
     browserify: require('browserify'),
+    browserSync: require('browser-sync').create(),
     buffer: require('vinyl-buffer'),
     camelCase: require('camelcase'),
     chalk: require('chalk'),
+    cssnano: require('cssnano'),
     del: require('del'),
     eventStream: require('event-stream'),
     fse: require('fs-extra'),
@@ -101,8 +104,9 @@ GULP.task('javascripts', function (callback) {
 // Combine svg files into one with <symbol> elements
 GULP.task('svgstore', requireGulpTask('svgstore'));
 
-// Setup a webserver, defaults to port 8080
-GULP.task('server', requireGulpTask('server'));
+// Setup a local development server with Browsersync
+GULP.task('browsersync', requireGulpTask('browsersync'));
+
 
 // Default Gulp task that will run all the necessary
 // tasks to generate a development ready build
@@ -130,7 +134,7 @@ GULP.task('serve', function (callback) {
         'default',
         [
             'watch',
-            'server'
+            'browsersync'
         ],
         callback
     );

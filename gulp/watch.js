@@ -47,28 +47,20 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             return GULP.start('twig');
         });
 
-        var static_files = GULP_PLUGINS.watch([
+        var sync = GULP_PLUGINS.watch([
             process.env.TIPICSS_SRC + '/**/images/**',
         ], options, function (events, done) {
 
             return GULP.start('sync');
         });
 
-        var reload = GULP_PLUGINS.watch([
-            process.env.TIPICSS_DIST + '/main/stylesheets/index.css'
-        ], options, function (events, done) {
-
-            GULP_PLUGINS.livereload.reload();
-        });
-
         return NODE_MODULES.merge(
             stylesheets,
             javascripts,
-            twig,
-            static_files,
             spritesmith,
             svgstore,
-            reload
+            twig,
+            sync
         );
     };
 };

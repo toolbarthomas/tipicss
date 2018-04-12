@@ -70,7 +70,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                     }
                 }
             }))
-            .pipe(GULP_PLUGINS.faker())
             .pipe(GULP.dest(source.output));
 
             streams.push(stream);
