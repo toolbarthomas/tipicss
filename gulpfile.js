@@ -34,7 +34,9 @@ const NODE_MODULES = {
     path: require('path'),
     runSequence: require('run-sequence').use(GULP),
     sassGlobImporter: require('node-sass-glob-importer'),
-    source: require('vinyl-source-stream')
+    source: require('vinyl-source-stream'),
+    stylelint: require('stylelint'),
+    reporter: require('postcss-reporter')
 };
 
 // Create a revision timesamp of the current date in milliseconds.

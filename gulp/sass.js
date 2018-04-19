@@ -19,8 +19,26 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
         var streams = [];
 
+        // Default processors we use in combination with the postcss package
         var processors = [
-            NODE_MODULES.autoprefixer()
+            NODE_MODULES.autoprefixer(),
+            NODE_MODULES.stylelint({
+                "extends": [
+                    "stylelint-config-standard",
+                    "stylelint-scss"
+                ],
+                "plugins": [
+                    "stylelint-scss"
+                ],
+                "rules": {
+                    'no-duplicate-selectors': false
+                }
+            }),
+            NODE_MODULES.reporter({
+                clearReportedMessages: true,
+                clearAllMessages: true,
+                indentation: null,
+            })
         ];
 
         // Append extra processors if we are running with the production flag

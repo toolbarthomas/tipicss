@@ -57,9 +57,13 @@
     "merge-stream": "^1.0.1",
     "node-sass-glob-importer": "^5.1.2",
     "path": "^0.12.7",
+    "postcss-reporter": "^5.0.0",
     "run-sequence": "^2.2.1",
     "sass-glob-importer": "^1.0.1",
     "sass-module-importer": "^1.4.0",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.0.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
