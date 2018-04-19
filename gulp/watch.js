@@ -2,6 +2,10 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            merge: require('merge-stream')
+        };
+
         const options = {
             read: false,
             readDelay: 250

@@ -2,6 +2,10 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            browserSync: require('browser-sync').create()
+        };
+
         // Setup the Browsersync Server
         var browserSync = NODE_MODULES.browserSync.init({
             server: (process.env.TIPICSS_DIST || './dist'),

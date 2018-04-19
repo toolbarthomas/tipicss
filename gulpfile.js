@@ -15,28 +15,10 @@ const GULP = require('gulp');
 // More information: https://www.npmjs.com/package/gulp-load-plugins
 const GULP_PLUGINS = require('gulp-load-plugins')();
 
-// Require all modules we use for our
-// gulp tasks located in ./gulp
+// Load Node modules only for the current gulpfile
 const NODE_MODULES = {
-    autoprefixer: require('autoprefixer'),
-    babelify: require('babelify'),
-    browserify: require('browserify'),
-    browserSync: require('browser-sync').create(),
-    buffer: require('vinyl-buffer'),
-    camelCase: require('camelcase'),
     chalk: require('chalk'),
-    cssnano: require('cssnano'),
-    del: require('del'),
-    eventStream: require('event-stream'),
-    fse: require('fs-extra'),
-    glob: require('glob'),
-    merge: require('merge-stream'),
-    path: require('path'),
     runSequence: require('run-sequence').use(GULP),
-    sassGlobImporter: require('node-sass-glob-importer'),
-    source: require('vinyl-source-stream'),
-    stylelint: require('stylelint'),
-    reporter: require('postcss-reporter')
 };
 
 // Create a revision timesamp of the current date in milliseconds.

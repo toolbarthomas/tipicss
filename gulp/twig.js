@@ -2,6 +2,12 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            fse: require('fs-extra'),
+            path: require('path'),
+            merge: require('merge-stream')
+        };
+
         // Iterate between each type of component withing the project.
         var sources = [
             {

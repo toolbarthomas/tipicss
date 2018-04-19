@@ -2,10 +2,22 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            autoprefixer: require('autoprefixer'),
+            cssnano: require('cssnano'),
+            merge: require('merge-stream'),
+            sassGlobImporter: require('node-sass-glob-importer'),
+            stylelint: require('stylelint'),
+            reporter: require('postcss-reporter')
+        };
+
         var sources = [
             {
                 input: [
-                    process.env.TIPICSS_SRC + '/**/stylesheets/*.scss'
+                    process.env.TIPICSS_SRC + '/main/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/modules/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/groups/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/templates/stylesheets/*.scss'
                 ],
                 output: process.env.TIPICSS_DIST
             },

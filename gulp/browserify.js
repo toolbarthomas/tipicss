@@ -1,6 +1,14 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
     return function (callback) {
 
+        var NODE_MODULES = {
+            buffer: require('vinyl-buffer'),
+            babelify: require('babelify'),
+            browserify: require('browserify'),
+            glob: require('glob'),
+            source: require('vinyl-source-stream')
+        };
+
         var globs = [
             NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/groups/**/javascripts/*.js'),
             NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/main/**/javascripts/*.js'),

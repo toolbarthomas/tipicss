@@ -2,6 +2,12 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            buffer: require('vinyl-buffer'),
+            del: require('del'),
+            merge: require('merge-stream')
+        };
+
         NODE_MODULES.del(process.env.TIPICSS_DIST + '/main/images/layout/sprite.*.png');
 
         var spritesmith = GULP.src(process.env.TIPICSS_SRC + '/main/images/layout/sprite/**/*.png')

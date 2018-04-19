@@ -7,6 +7,13 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
         // The vendors object within the package.json should be parsed as an Object
         // Where the key will be the base destination directory and it's value will be the source path
 
+        var NODE_MODULES = {
+            eventStream: require('event-stream'),
+            fse: require('fs-extra'),
+            merge: require('merge-stream'),
+            path: require('path')
+        };
+
         // Default path for the package.json file
         var package = {
             path: process.cwd() + '/package.json',

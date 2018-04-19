@@ -2,6 +2,10 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
 
     return function (callback) {
 
+        var NODE_MODULES = {
+            path: require('path')
+        };
+
         var svgstore = GULP.src([
             process.env.TIPICSS_SRC + '/main/images/layout/svg-sprite/**/*.svg'
         ])

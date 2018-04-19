@@ -1,6 +1,10 @@
 module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
     return function (callback) {
 
+        var NODE_MODULES = {
+            merge: require('merge-stream')
+        };
+
         var ignores = [
             'handlebars',
             'twig',
