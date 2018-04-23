@@ -3,8 +3,6 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
     return function (callback) {
 
         var NODE_MODULES = {
-            autoprefixer: require('autoprefixer'),
-            cssnano: (process.env.TIPICSS_ENV == 'production' ? require('cssnano') : false), // Only load cssnano for production
             merge: require('merge-stream'),
             sassGlobImporter: require('node-sass-glob-importer'),
             stylelint: require('stylelint'),
@@ -29,11 +27,11 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
             },
         ];
 
+        // Enable multiple streams for our Gulp task
         var streams = [];
 
         // Default processors we use in combination with the postcss package
-        var processors = [
-            NODE_MODULES.autoprefixer(),
+        const postcss_processors = [
             NODE_MODULES.stylelint({
                 "extends": [
                     "stylelint-config-standard",
@@ -53,15 +51,21 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
             })
         ];
 
-        // Append extra processors if we are running with the production flag
+        // Here you can setup extra PostCSS processors
         if (process.env.TIPICSS_ENV == 'production') {
-            processors.push(
+            NODE_MODULES['autoprefixer'] = require('autoprefixer');
+            NODE_MODULES['cssnano'] = require('cssnano');
+
+            postcss_processors.push(
+                NODE_MODULES.autoprefixer(),
                 NODE_MODULES.cssnano()
             );
         }
+
         // Iterate trough each source we have defined within sources
         // Only compile modified Sass files
-        sources.forEach(function (source, index) {
+        for(var source in sources) {
+            source = sources[source];
 
             var stream = GULP.src(source.input)
             .pipe(GULP_PLUGINS.newer(source.output))
@@ -76,13 +80,13 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output))
             .pipe(GULP_PLUGINS.filter('**/*.css'))
-            .pipe(GULP_PLUGINS.postcss(processors))
+            .pipe(GULP_PLUGINS.postcss(postcss_processors))
             .pipe(GULP_PLUGINS.rename({ extname: '.min.css' }))
             .pipe(GULP_PLUGINS.sourcemaps.write('./'))
             .pipe(GULP.dest(source.output));
 
             streams.push(stream);
-        }, this);
+        }
 
         return NODE_MODULES.merge(streams);
     };
