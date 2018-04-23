@@ -1,4 +1,4 @@
-module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
+module.exports = (GULP, GULP_PLUGINS, REVISION) => {
     return function (callback) {
 
         var NODE_MODULES = {
@@ -6,6 +6,7 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
             babelify: require('babelify'),
             browserify: require('browserify'),
             glob: require('glob'),
+            merge: require('merge-stream'),
             source: require('vinyl-source-stream')
         };
 

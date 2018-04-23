@@ -1,4 +1,4 @@
-module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
+module.exports = (GULP, GULP_PLUGINS, REVISION) => {
 
     return function (callback) {
 

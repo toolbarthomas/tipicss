@@ -1,10 +1,10 @@
-module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
+module.exports = (GULP, GULP_PLUGINS, REVISION) => {
 
     return function (callback) {
 
         var NODE_MODULES = {
             autoprefixer: require('autoprefixer'),
-            cssnano: require('cssnano'),
+            cssnano: (process.env.TIPICSS_ENV == 'production' ? require('cssnano') : false), // Only load cssnano for production
             merge: require('merge-stream'),
             sassGlobImporter: require('node-sass-glob-importer'),
             stylelint: require('stylelint'),
@@ -59,7 +59,6 @@ module.exports = (GULP, GULP_PLUGINS, NODE_MODULES, REVISION) => {
                 NODE_MODULES.cssnano()
             );
         }
-
         // Iterate trough each source we have defined within sources
         // Only compile modified Sass files
         sources.forEach(function (source, index) {

@@ -134,5 +134,5 @@ function error(message) {
 // Simple helper for requiring Gulp tasks defined in seperate files
 // Each Gulp is located within ./gulp
 function requireGulpTask(file) {
-    return require('./gulp/' + file)(GULP, GULP_PLUGINS, NODE_MODULES, REVISION);
+    return require('./gulp/' + file)(GULP, GULP_PLUGINS, REVISION);
 }
