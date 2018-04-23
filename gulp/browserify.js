@@ -19,13 +19,15 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
 
         var stream = [];
 
-        globs.forEach(function(files) {
+        for (var i = 0; i < globs.length; i++) {
+            var files = globs[i];
 
             if(files.length === 0) {
-                return;
+                break;
             }
 
-            files.forEach(function(file) {
+            for (var index = 0; index < files.length; index++) {
+                var file = files[index];
 
                 // Get the relative path of the current file
                 var source_path = file.replace(
@@ -49,8 +51,8 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
                 .pipe(GULP.dest(process.env.TIPICSS_DIST));
 
                 stream.push(browserify);
-            });
-        });
+            }
+        }
 
         return NODE_MODULES.merge(stream);
     };

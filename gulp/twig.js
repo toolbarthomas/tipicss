@@ -50,7 +50,8 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
 
         // Iterate trough each source so we can transform all twig sources
         // Return each iterated object into the stream.
-        sources.forEach(function (source) {
+        for (var source in sources) {
+            source = sources[source];
 
             // Abort if we have no inout within our source
             if (source.input === 0) {
@@ -79,8 +80,7 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
             .pipe(GULP.dest(source.output));
 
             streams.push(stream);
-
-        }, this);
+        }
 
         return NODE_MODULES.merge(streams);
 
