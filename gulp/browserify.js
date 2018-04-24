@@ -11,10 +11,10 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
         };
 
         var globs = [
-            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/groups/**/javascripts/*.js'),
             NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/main/**/javascripts/*.js'),
-            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/templates/**/javascripts/*.js'),
-            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/modules/**/javascripts/*.js')
+            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/modules/**/javascripts/*.js'),
+            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/groups/**/javascripts/*.js'),
+            NODE_MODULES.glob.sync(process.env.TIPICSS_SRC + '/templates/**/javascripts/*.js')
         ];
 
         var stream = [];

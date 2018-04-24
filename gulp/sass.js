@@ -32,22 +32,10 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
 
         // Default processors we use in combination with the postcss package
         const postcss_processors = [
-            NODE_MODULES.stylelint({
-                "extends": [
-                    "stylelint-config-standard",
-                    "stylelint-scss"
-                ],
-                "plugins": [
-                    "stylelint-scss"
-                ],
-                "rules": {
-                    'no-duplicate-selectors': false
-                }
-            }),
+            NODE_MODULES.stylelint(),
             NODE_MODULES.reporter({
                 clearReportedMessages: true,
                 clearAllMessages: true,
-                indentation: null,
             })
         ];
 
@@ -71,6 +59,7 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
             .pipe(GULP_PLUGINS.newer(source.output))
             .pipe(GULP_PLUGINS.sourcemaps.init())
             .pipe(GULP_PLUGINS.sass({
+                outputStyle: 'expanded',
                 includePaths: [
                     process.env.TIPICSS_PACKAGES,
                     process.env.TIPICSS_SRC
