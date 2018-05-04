@@ -1,7 +1,5 @@
 "use strict";
 
-const NAMESPACE = 'tipicss';
-
 // Require environment variabels from .env
 // We use these variables to set a custom src/dist path
 // for our gulp tasks
@@ -127,7 +125,7 @@ GULP.task('serve', function (callback) {
 // Helper function for displaying messages with Node Chalk
 // This function will also exit the current Node process.
 function error(message) {
-    console.log(NODE_MODULES.chalk.red('[ ' + NAMESPACE + ' ]' + ' - ' + message));
+    console.log(NODE_MODULES.chalk.red('[ tipicss ]' + ' - ' + message));
     process.exit(1);
 }
 
