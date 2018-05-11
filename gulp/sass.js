@@ -12,10 +12,10 @@ module.exports = (GULP, GULP_PLUGINS, REVISION) => {
         var sources = [
             {
                 input: [
-                    process.env.TIPICSS_SRC + '/main/stylesheets/*.scss',
-                    process.env.TIPICSS_SRC + '/modules/stylesheets/*.scss',
-                    process.env.TIPICSS_SRC + '/groups/stylesheets/*.scss',
-                    process.env.TIPICSS_SRC + '/templates/stylesheets/*.scss'
+                    process.env.TIPICSS_SRC + '/**/main/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/**/modules/**/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/**/groups/**/stylesheets/*.scss',
+                    process.env.TIPICSS_SRC + '/**/templates/**/stylesheets/*.scss'
                 ],
                 output: process.env.TIPICSS_DIST
             },
